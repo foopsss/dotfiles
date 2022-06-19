@@ -1,0 +1,297 @@
+### Archivo de configuraciones de Sway de Lucas ###
+# Este archivo se debe copiar a ~/.config/sway/config para editar.
+# Página del manual: "man 5 sway".
+
+## Ajustes ##
+
+	# Activo el servicio "xdg-desktop-portal" durante el encendido.
+	# Fuente: https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start 
+	exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+	
+	# Activo el servicio "Mako" durante el encendido para las notificaciones.
+	exec mako --anchor top-right
+
+## Estilo ##
+
+	# Fuente a utilizar en el sistema.
+	font pango:Cantarell 11
+	
+	# Color de las barras de una ventana cuando está enfocada.
+	# client.focused #FFA500 #ffbf00 #FFFFFF	## Color amarillo. ##
+	# client.focused #FFA500 #FFA500 #FFFFFF 	## Color naranja. ##
+	# client.focused #022F78 #022F78 #FFFFFF	## Color azul. ##
+	## Color cobre. ##
+	# client.focused #CD5A2A #CD5A2A #FFFFFF
+	## Color celeste. ##
+	client.focused #3AB7F7 #3AB7F7 #FFFFFF
+	
+	# Color de las barras de una ventana cuando no está enfocada.
+	## Color celeste. ##
+	# client.focused_inactive #174EA7 #174EA7 #FFFFFF #174EA7 #174EA7
+	# client.unfocused #174EA7 #174EA7 #FFFFFF #174EA7 #174EA7
+	## Color gris. ##
+	client.focused_inactive #999999 #999999 #FFFFFF #999999 #999999
+	client.unfocused #999999 #999999 #FFFFFF #999999 #999999
+
+	# Barras de título.
+	# Configuración que ajusta los bordes de las ventanas según la cantidad de ventanas que haya.
+	# smart_borders on
+	# Configuración para especificar el grosor de las barras que rodean a las ventanas.
+	default_border pixel 2
+	default_floating_border pixel 2
+	
+	# Swaybar.
+	# Página del manual: "man 5 sway-bar".
+	# bar {
+	#	position top
+
+	#	# When the status_command prints a new line to stdout, swaybar updates.
+	#	# The default just shows the current date and time.
+	#	status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+
+	#	    colors {
+	#	        statusline #ffffff
+	#	        background #323232
+	#	        inactive_workspace #32323200 #32323200 #5c5c5c
+	#	        focused_workspace #FF0000 #f76060 #ffffff
+	#	    }
+    # }
+    
+    # Waybar.
+    # Página: https://github.com/Alexays/Waybar
+    bar {
+    	swaybar_command waybar
+    }
+    
+    # Espacio entre las ventanas y los bordes.
+    gaps inner 5
+
+## Variables ##
+
+	# Tecla MOD.
+	set $mod Mod4
+	
+	# Teclas de movimiento.
+	# Configuradas como en los videojuegos.
+	set $left h
+	set $down j
+	set $up k
+	set $right l
+
+	# Terminal.
+	set $term gnome-terminal --window-with-profile=Lucas
+	
+	# Actualizador.
+	set $updates gnome-terminal --window-with-profile=Updates
+	
+	# Lanzador de aplicaciones.
+	set $menu rofi -show drun
+	
+	# Navegador.
+	set $browser flatpak run org.mozilla.firefox 
+	
+	# Gestor de Archivos.
+	set $files nautilus
+	
+	# Configuraciones de Sway.
+	set $config io.elementary.code /var/home/lucas/.config/sway/config
+	
+	# Configuraciones de GNOME.
+	set $config2 gnome-control-center
+
+	# Tienda de Software.
+	set $software gnome-software
+
+## Entradas ##
+# Se puede obtener un listado de los dispositivos de entrada utilizando "swaymsg -t get_inputs".
+# Se puede obtener un listado de los dispositivos de salida utilizando "swaymsg -t get_outputs".
+
+	# Monitor.
+	output eDP-1 {
+		resolution 1366x768
+		position 0,0
+		scale 1
+		bg /var/home/$USER/Imágenes/Fondos de escritorio/Wallpaper12.jpg fill
+	}
+	
+	# Touchpad.
+	input "2:14:ETPS/2_Elantech_Touchpad" {
+		dwt enabled
+		tap enabled
+		natural_scroll enabled
+		middle_emulation enabled
+	}
+	
+	# Teclado.
+	input "*" {
+		xkb_layout latam
+	}
+
+## Atajos ##
+	
+	# Configuración de Sway.
+	bindsym Control+Alt+C exec $config
+	
+	# Configuración de GNOME.
+	bindsym Control+Alt+G exec $config2
+	
+	# Firefox.
+	bindsym Control+$mod+F exec $browser
+	
+	# Gestor de Archivos.
+	bindsym Control+Alt+F exec $files
+	
+	# Software.
+	bindsym Control+Alt+S exec $software
+	
+	# Terminal.
+	bindsym Control+Alt+T exec $term
+	
+	# Actualizaciones de Software.
+	bindsym Control+Alt+Return exec $updates
+	
+	# Cerrar el proceso enfocado.
+	bindsym Alt+F4 kill
+	
+	# Abro la ventana actual en pantalla completa.
+	bindsym $mod+f fullscreen
+	
+    # Convierto la ventana actual en una ventana flotante.
+    bindsym $mod+space floating toggle
+
+    # Cambio el enfoque entre una ventana flotante y una que está fijada.
+    bindsym $mod+Shift+space focus mode_toggle
+	
+	# Menú de aplicaciones.
+	bindsym $mod+d exec $menu
+	
+	# Cambiar la ventana enfocada.
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+    
+    # Cambio la posición de las ventanas.
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+    
+    # Cambio de escritorio virtual.
+    # Los escritorios virtuales pueden tener cualquier nombre. Los números 1-10 son simplemente el estándar.
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    
+    # Mover el contenedor enfocado a otro escritorio virtual.
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+    
+	# Cambio el enfoque al contenedor principal.
+	bindsym $mod+a focus parent
+    
+	# Cambio el estilo en el que se acomodan las ventanas.
+	bindsym $mod+s layout stacking
+    bindsym $mod+t layout tabbed
+    bindsym $mod+e layout toggle split
+    
+    # Cambio el tamaño de las ventanas.
+    bindsym $mod+r mode "resize"
+    
+	mode "resize" {
+		# La tecla "derecha" aumenta el ancho del contenedor.
+		# La tecla "izquierda" disminuye el ancho del contenedor.
+		# La tecla "arriba" aumenta el largo del contenedor.
+		# La tecla "abajo" disminuye el largo del contenedor.
+		bindsym $left resize grow width 10px
+		bindsym $right resize shrink width 10px
+		bindsym $up resize grow height 10px
+		bindsym $down resize shrink height 10px
+
+		# Lo mismo, pero con las teclas de movimiento.
+		bindsym Left resize grow width 10px
+		bindsym Right resize shrink width 10px
+		bindsym Up resize grow height 10px
+		bindsym Down resize shrink height 10px
+
+		# Vuelvo al modo normal.
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+	}
+    
+    # Scratchpad.
+    # Sway tiene un "anotador", un espacio que permite guardar ventanas para usarlas más tarde.
+    # Muevo la ventana actual al anotador.
+    bindsym $mod+Shift+minus move scratchpad
+    # Recupero las ventanas guardadas en el anotador.
+    # Si hay varias ventanas guardadas, el comando las recorre de a una.
+    bindsym $mod+minus scratchpad show
+    
+    # Disposición de la ventana.
+    # Se puede "dividir" la selección actual.
+    # "$mod+b" sirve para dividir la ventana horizontalmente.
+    # "$mod+v" sirve para dividir la ventana verticalmente.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+    
+    # Brillo.
+    bindsym XF86MonBrightnessUp exec light -A 5
+	bindsym XF86MonBrightnessDown exec light -U 5
+	
+	# Sonido.
+	
+	# Capturas de pantalla.
+	bindsym $mod+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+	
+	# Recargar el archivo de configuraciones.
+	bindsym $mod+Shift+c reload
+	
+	# Menú de encendido/apagado.
+	# Fuente: https://www.reddit.com/r/swaywm/comments/uviw6i/making_the_modshifte_exit_menu_more_useful/
+	bindsym $mod+Shift+e exec swaynag -f "Terminus" \
+	-m "Utilizaste el atajo de salida. ¿Te gustaría salir de Sway? Esto cerrará tu sesión actual de Wayland." \
+	-B "Sí, salir de Sway." "swaymsg exit" \
+	-B "No, suspender." "systemctl suspend && pkill swaynag" \
+	-B "Sí, reiniciar." "systemctl reboot" \
+	-B "Sí, apagar." "systemctl poweroff" \
+
+## Miscelánea ##
+
+    # Suspensión del equipo.
+	# Esta configuración bloquea la pantalla luego de 300 segundos de inactividad
+	# y luego apaga la pantalla luego de otros 300 segundos de inactividad, encendiéndola
+	# nuevamente al volver a utilizar el dispositivo. También bloquea la pantalla antes
+	# de que el dispositivo entre en reposo.
+    exec swayidle -w \
+              timeout 300 'swaylock -f -c 000000' \
+              timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+              before-sleep 'swaylock -f -c 000000'
+              
+	# Arrastrar ventanas.
+	# Esta configuración permite arrastrar ventanas presionando $mod y el botón izquierdo
+	# del ratón. Se puede cambiar el tamaño de las ventanas utilizando el botón derecho del
+	# ratón y $mod. Esto también funciona para ventanas no flotantes. Se puede cambiar la
+	# variable normal para que el botón izquierdo sirva para cambiar el tamaño de las
+	# ventanas y el botón derecho para arrastraslas.
+	floating_modifier $mod normal
+
+	# Configuraciones varias.
+	include etc/sway/config.d/*
+	
+## Créditos ##
+# Thomas Leister - Guía para usar SwayWM en Fedora: https://thomas-leister.de/en/sway-window-manager/
