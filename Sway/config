@@ -101,6 +101,19 @@
 
 	# Tienda de Software.
 	set $software gnome-software
+	
+	# Áreas de trabajo.
+	# Fuente: https://www.reddit.com/r/swaywm/comments/hil7p5/change_workspace_names_for_swaywm/
+	set $ws1 1
+	set $ws2 2
+	set $ws3 3
+	set $ws4 4
+	set $ws5 5
+	set $ws6 6
+	set $ws7 7
+	set $ws8 8
+	set $ws9 9
+	set $ws10 10
 
 ## Entradas ##
 # Se puede obtener un listado de los dispositivos de entrada utilizando "swaymsg -t get_inputs".
@@ -179,28 +192,28 @@
     
     # Cambio de escritorio virtual.
     # Los escritorios virtuales pueden tener cualquier nombre. Los números 1-10 son simplemente el estándar.
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
+    bindsym $mod+0 workspace $ws10
     
     # Mover el contenedor enfocado a otro escritorio virtual.
-    bindsym $mod+Shift+1 move container to workspace 1
-    bindsym $mod+Shift+2 move container to workspace 2
-    bindsym $mod+Shift+3 move container to workspace 3
-    bindsym $mod+Shift+4 move container to workspace 4
-    bindsym $mod+Shift+5 move container to workspace 5
-    bindsym $mod+Shift+6 move container to workspace 6
-    bindsym $mod+Shift+7 move container to workspace 7
-    bindsym $mod+Shift+8 move container to workspace 8
-    bindsym $mod+Shift+9 move container to workspace 9
-    bindsym $mod+Shift+0 move container to workspace 10
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
+    bindsym $mod+Shift+0 move container to workspace $ws10
     
 	# Cambio el enfoque al contenedor principal.
 	bindsym $mod+a focus parent
@@ -254,9 +267,14 @@
 	bindsym XF86MonBrightnessDown exec light -U 5
 	
 	# Sonido.
+	# Fuente: https://www.reddit.com/r/swaywm/comments/qei3oh/comment/hhtvsen/?utm_source=reddit&utm_medium=web2x&context=3
+	bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 	
 	# Capturas de pantalla.
-	bindsym $mod+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+	# Fuente: https://thomas-leister.de/en/sway-window-manager/
+	bindsym $mod+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
 	
 	# Recargar el archivo de configuraciones.
 	bindsym $mod+Shift+c reload
@@ -292,6 +310,3 @@
 
 	# Configuraciones varias.
 	include etc/sway/config.d/*
-	
-## Créditos ##
-# Thomas Leister - Guía para usar SwayWM en Fedora: https://thomas-leister.de/en/sway-window-manager/
