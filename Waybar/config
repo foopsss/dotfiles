@@ -1,8 +1,9 @@
 // Archivo de configuraciones de Waybar de Lucas //
 // Este archivo se debe copiar a ~/.config/waybar/config para editar.
+// Página de GitHub del proyecto: https://github.com/Alexays/Waybar
+// Página del manual: "man 5 waybar".
 // Referencia de configuración en: https://github.com/Alexays/Waybar/wiki/Configuration
 // Archivo base en: https://github.com/Alexays/Waybar/blob/master/resources/config
-// Página del manual: "man 5 waybar".
 
 {
     

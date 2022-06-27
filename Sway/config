@@ -1,5 +1,6 @@
 ### Archivo de configuraciones de Sway de Lucas ###
 # Este archivo se debe copiar a ~/.config/sway/config para editar.
+# Página de GitHub del proyecto: https://github.com/swaywm/sway.
 # Página del manual: "man 5 sway".
 
 ## Ajustes ##
@@ -9,7 +10,7 @@
 	exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 	
 	# Activo el servicio "Mako" durante el encendido para las notificaciones.
-	exec mako --anchor top-right
+	exec mako
 
 ## Estilo ##
 
