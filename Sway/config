@@ -292,12 +292,12 @@
 ## Miscelánea ##
 
     # Suspensión del equipo.
-	# Esta configuración bloquea la pantalla luego de 300 segundos de inactividad
-	# y luego apaga la pantalla luego de otros 300 segundos de inactividad, encendiéndola
+	# Esta configuración bloquea la pantalla luego de 1000 segundos de inactividad
+	# y luego apaga la pantalla luego de otros 400 segundos de inactividad, encendiéndola
 	# nuevamente al volver a utilizar el dispositivo. También bloquea la pantalla antes
 	# de que el dispositivo entre en reposo.
     exec swayidle -w \
-              timeout 300 'swaylock -f -c 000000' \
+              timeout 1000 'swaylock -f -c 000000' \
               timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
               before-sleep 'swaylock -f -c 000000'
               
