@@ -72,7 +72,8 @@
     }
 
 	# Navegador.
-	set $browser flatpak run org.mozilla.firefox
+    # Correr Firefox con Wayland: https://www.reddit.com/r/LinuxCafe/comments/isdmmp/tip_use_firefox_flatpak_in_native_wayland_no/.
+	set $browser flatpak run --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 org.mozilla.firefox
 
     # Terminal.
     set $term alacritty
