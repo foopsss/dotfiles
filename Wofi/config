@@ -1,0 +1,6 @@
+prompt=Introduzca un término...
+allow_images=true
+allow_markup=true
+term=alacritty
+sort_order=alphabetical
+no_actions=true

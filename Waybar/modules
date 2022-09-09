@@ -1,0 +1,35 @@
+/* Archivo de modulos de Waybar de Lucas */
+/* Este archivo se debe copiar a ~/.config/waybar para editar. */
+
+/*
+    Configuraciones utilizadas como referencia:
+    * https://github.com/eldermf/arch-wayland/blob/master/home/.config/wayfire/waybar/modules
+*/
+
+{
+
+    // Ícono de Linux.
+    "custom/fedora": {
+        "format": "{icon}",
+        "format-icons": [""],
+        "on-click": "bash /home/lucas/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh",
+    },
+
+    "custom/notification": {
+        "tooltip": true,
+        "format": "{} {icon}",
+        "format-icons": {
+            "notification": "<span foreground='green'></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'></span>",
+            "dnd-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+}

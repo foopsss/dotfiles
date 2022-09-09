@@ -4,13 +4,13 @@
 # Página del manual: "man 5 sway".
 
 ## Ajustes ##
-
-	# Activo el servicio "xdg-desktop-portal" durante el encendido.
+    
+    # Activo el servicio "xdg-desktop-portal" durante el encendido.
 	# Fuente: https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start 
 	exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
     
     # Activo el servicio "Mako" durante el encendido para las notificaciones.
-	exec_always mako
+	exec_always swaync
 
     # Activo XWayland durante el encendido para renderizar aplicaciones de X11.
     # No se inicializa por completo hasta utilizar una aplicación que lo requiera.
@@ -33,8 +33,8 @@
 
 	# Configuración para especificar el grosor de las barras que rodean a las ventanas.
     # La opción "normal" es la que permite que haya barras de título, mientras que "pixel" las remueve.
-	default_border normal 2
-	default_floating_border normal 2
+	default_border pixel 2
+	default_floating_border pixel 2
 
     # Espacio entre las ventanas y los bordes.
     gaps inner 5
@@ -54,21 +54,28 @@
 
 	# Swaybar.
 	# Página del manual: "man 5 sway-bar".
-	bar {
-            position top
+	# bar {
+    #       position top
 
             # Cuando status_command imprime una nueva línea a stdout, swaybar se refresca.
             # El comando ahora mismo muestra el nivel de batería, seguido de la fecha y la hora.
             # Fuente: https://www.reddit.com/r/swaywm/comments/m3sbge/comment/gqsmxoe/.
-            status_command while date +[$(cat /sys/class/power_supply/BAT*/capacity)%]' | %Y-%m-%d | %I:%M:%S %p'; do sleep 1; done
+            # El comando de la hora está modificado para mostrar la hora en el formato de veinticuatro horas.
+            # Fuente: https://www.reddit.com/r/swaywm/comments/cygblt/what_time_format_do_you_prefer_for_the_status_bar/.
+    #       status_command while date +[$(cat /sys/class/power_supply/BAT*/capacity)%]' | %d-%m-%Y | %H:%M:%S %p'; do sleep 1; done
 
-                colors {
-                    statusline #FFFFFF
-                    background #323232
-                    inactive_workspace #32323200 #32323200 #5c5c5c
-                    focused_workspace #FF0000 #f76060 #FFFFFF
-                    urgent_workspace #240101 #690909 #FFFFFF
-                }
+    #           colors {
+    #               statusline #FFFFFF
+    #               background #323232
+    #               inactive_workspace #32323200 #32323200 #5c5c5c
+    #               focused_workspace #FF0000 #f76060 #FFFFFF
+    #               urgent_workspace #240101 #690909 #FFFFFF
+    #           }
+    # }
+
+    # Waybar.
+    bar {
+        swaybar_command waybar
     }
 
 	# Navegador.
@@ -81,20 +88,23 @@
     # Gestor de Archivos.
 	set $files nautilus
 
-	# Tienda de Software.
+    # Software.
 	set $software gnome-software
 
-	# Configuraciones de Sway.
-	set $config flatpak run com.vscodium.codium /var/home/lucas/.config/sway/config
+    # Configuración de Sway.
+	set $config flatpak run dev.lapce.lapce $HOME/.config/sway/config
 
-    # Configuraciones de GNOME.
+    # Configuración de GNOME.
 	set $config2 gnome-control-center
 
-    # Lanzador de aplicaciones.
-	set $menu rofi -show drun
-
     # Actualizaciones de Software.
-    set $updater alacritty -e /var/home/lucas/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh
+    set $updates gnome-terminal --window-with-profile=Updates
+
+    # Lanzador de aplicaciones.
+	set $menu wofi --show drun
+	
+	# Menú de notificaciones.
+	set $notifications swaync-client -t -sw
 
     # Áreas de trabajo.
 	# Fuente: https://www.reddit.com/r/swaywm/comments/hil7p5/change_workspace_names_for_swaywm/.
@@ -118,7 +128,7 @@
 		resolution 1366x768
 		position 0,0
 		scale 1
-        bg /var/home/$USER/Imágenes/Fondos de escritorio/Wallpaper.png fill
+        bg $HOME/Imágenes/Fondos de escritorio/Wallpaper.png fill
 	}
 	
 	# Touchpad.
@@ -152,15 +162,18 @@
 
         # Configuración de Sway.
 	    bindsym Control+Alt+C exec $config
-	
+
     	# Configuración de GNOME.
 	    bindsym Control+Alt+G exec $config2
 
-        # Lanzador de aplicaciones.
-	    bindsym $mod+d exec $menu
-
         # Actualizaciones de Software.
 	    bindsym Control+Alt+Return exec $updates
+
+        # Lanzador de aplicaciones.
+        bindsym $mod+d exec $menu
+        
+        # Menú de notificaciones.
+        bindsym $mod+Shift+n exec $notifications
 
     # Acciones.
 
@@ -273,6 +286,10 @@
         # Capturas de pantalla.
         # Fuente: https://thomas-leister.de/en/sway-window-manager/.
         bindsym $mod+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+        bindsym $mod+Shift+Print exec grim -g "$(slurp)" $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+        
+        # Menú de notificaciones - No molestar.
+        bindsym $mod+n exec swaync-client -d -sw
         
         # Recargar el archivo de configuraciones.
         bindsym $mod+Shift+c reload

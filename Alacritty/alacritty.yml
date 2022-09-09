@@ -4,6 +4,10 @@
 # Archivo base en: https://github.com/alacritty/alacritty/blob/master/alacritty.yml.
 # Página del manual: "man alacritty".
 
+# Variables de entorno.
+env:
+  TERM: alacritty
+
 # Ajustes de la ventana:
 window:
 
@@ -22,7 +26,7 @@ window:
   decorations: full
 
   # Transparencia.
-  opacity: 0.9
+  opacity: 0.8
 
   # Título de la ventana.
   title: Alacritty
@@ -59,24 +63,57 @@ glyph_offset:
   y: 0
 
 # Esquemas de colores para la terminal.
-schemes:
+# schemes:
   ### Custom 1 ###
-  Custom1: &Custom1
-    primary:
-      background: '#1C1B22'
-      foreground: '#FFFFFF'
-    cursor:
-      text: '#FFFFFF'
-      cursor: '#FFAE42'
-    selection:
-      text: CellForeground
-      background: '#FFFFFF'
+  # Custom1: &Custom1
+    # primary:
+      # background: '#1C1B22'
+      # foreground: '#FFFFFF'
+    # cursor:
+      # text: '#FFFFFF'
+      # cursor: '#FFAE42'
+    # selection:
+      # text: CellForeground
+      # background: '#FFFFFF'
+
+# Definición de los colores de la terminal mediante un tema.
+# colors: *Custom1
+
+# Colores.
+colors:
+  primary:
+    background: '0x1C1B22'
+    foreground: '0xFFFFFF'
+  cursor:
+    text: '0xFFFFFF'
+    cursor: '0xFFAE42'
+  selection:
+    text: CellForeground
+    background: '0xFFFFFF'
+  normal:
+    black:   '0x000000'
+    red:     '0xE62020'
+    green:   '0x32CD32'
+    yellow:  '0xF5C71A'
+    blue:    '0x007FFF'
+    magenta: '0xFF00FF'
+    cyan:    '0xB0E0E6'
+    white:   '0xFAEBD7'
+  bright:
+    black:   '0x0B4453'
+    red:     '0xFF0800'
+    green:   '0x39FF14'
+    yellow:  '0xFEFE22'
+    blue:    '0x0000CD'
+    magenta: '0xFF1DCE'
+    cyan:    '0xB9F2FF'
+    white:   '0xFFFFFF'
+
+# Si se establece el valor "true", el texto en negritas es mostrado utilizando las variantes brillantes de los colores.
+# draw_bold_text_with_bright_colors: true
 
 # Permito que el cursor tenga colores personalizados.
 custom_cursor_colors: true
-
-# Definición de los colores de la terminal.
-colors: *Custom1
 
 # Permito que las ventanas de Alacritty tengan un título dinámico.
 dynamic_title: true
@@ -129,3 +166,7 @@ url:
   # Estos modificadores deben ser presionados al abrir URLs presionando en ellas.
   modifiers: None
 
+# Atajos de teclado.
+key_bindings:
+  - { key: C, mods: Control, action: Copy }  
+  - { key: V, mods: Control, action: Paste }

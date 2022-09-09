@@ -1,0 +1,264 @@
+/* Archivo de estilización de Waybar de Lucas */
+/* Este archivo se debe copiar a ~/.config/waybar para editar. */
+/* Referencia de estilización: https://github.com/Alexays/Waybar/wiki/Styling */
+
+/*
+    Configuraciones utilizadas como referencia:
+    * https://github.com/Alexays/Waybar/blob/master/resources/style.css
+    * https://github.com/jakehamilton/dotfiles/blob/master/waybar/style.css
+    * https://github.com/eldermf/arch-wayland/blob/master/home/.config/wayfire/waybar/style.css
+*/
+
+/* Fuente. */
+* {
+    font-family: Cantarell, FontAwesome6Free, FontAwesome6Brands;
+}
+
+/* Estilo de la barra principal. */
+    window#waybar {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    window#waybar.hidden {
+        opacity: 0.2;
+    }
+    
+    window#waybar.empty #window {
+        border: transparent;
+        color: transparent;
+        background-color: rgba(0, 0, 0, 0);
+    }
+ 
+/* Estilo de los sectores de la barra. */
+
+    /* Módulos de la izquierda. */
+    .modules-left {
+        border: 2px solid #000000;
+        border-radius: 12px;
+        margin-top: 4px;
+        margin-left: 4px;
+        margin-bottom: 4px;
+        margin-right: 4px;
+    }
+    
+    /* Módulos de la derecha. */
+    .modules-right {
+        border: 2px solid #000000;
+        border-radius: 12px;
+        margin-top: 4px;
+        margin-left: 4px;
+        margin-bottom: 4px;
+        margin-right: 4px;
+    }
+    
+/* Estilo de los módulos. */
+
+    /* Áreas de trabajo. */
+    #workspaces {
+        background: #262626;
+        transition: none;
+    }
+
+    #workspaces button {
+        color: #F8F8F2;
+        background: transparent;
+        font-size: 16px;
+        transition: none;
+    }
+
+    #workspaces button.focused {
+        color: #00FC69;
+        font-weight: bold;
+    }
+
+    #workspaces button:hover {
+        color: #FF79C6;
+        text-shadow: inherit;
+        box-shadow: inherit;
+        transition: none;
+    }
+    
+    /* Bandeja de aplicaciones minimizadas. */
+    #tray {
+        background-color: #90B1B1;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    #tray menu {
+        color: #FFFFFF;
+        background-color: #262626;
+    }
+    
+    #tray > .passive {
+        -gtk-icon-effect: dim;
+    }
+    #tray > .needs-attention {
+        -gtk-icon-effect: highlight;
+    }
+    
+    /* Ícono de Linux. */
+    #custom-fedora {
+        color: #FFFFFF;
+        background-color: #294172;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    /* Indicador de reposo. */
+    #idle_inhibitor {
+        background-color: #F1C40F;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    /* Modos especiales del gestor de ventanas. */
+    #mode {
+        color: #FFFFFF;
+        background-color: #F76060;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    /* Ventana abierta. */
+    #window {
+        border: 2px solid #000000;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        color: #F8F8F2;
+        background-color: #262626;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-top: 4px;
+        margin-left: 4px;
+        margin-bottom: 4px;
+        margin-right: 4px;
+    }
+
+    /* Conexión de red. */
+    #network {
+        color: #F8F8F2;
+        background-color: #2980B9;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    #network.disconnected {
+        background-color: #F53C3C;
+    }
+
+    /* CPU. */
+    #cpu {
+        color: #F8F8F2;
+        background-color: #2ECC71;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    /* RAM. */
+    #memory {
+        color: #F8F8F2;
+        background-color: #9B59B6;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    /* Temperatura. */
+    #temperature {
+        color: #F8F8F2;
+        background-color: #F0932B;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    #temperature.critical {
+        background-color: #F53C3C;
+    }
+
+    /* Batería. */
+    #battery {
+        color: #000000;
+        background-color: #FFFFFF;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    #battery.charging, #battery.plugged {
+        color: #FFFFFF;
+        background-color: #26A65B;
+    }
+    
+    @keyframes blink {
+        to {
+            color: #000000;
+            background-color: #FFFFFF;
+        }
+    }
+
+    #battery.critical:not(.charging) {
+        background-color: #F53C3C;
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    /* Reloj. */
+    #clock {
+        color: #F8F8F2;
+        background-color: #64727D;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    #custom-notification {
+        color: #F8F8F2;
+        background-color: #262626;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    /* Condiciones especiales para la estilización. */
+    
+        /* Redondeo del widget más a la derecha. */
+        
+            /* Indicador de reposo. */
+            .modules-left > widget:last-child > #idle_inhibitor {
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+            
+            /* Modo de ventana. */
+            .modules-left > widget:last-child > #mode {
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+
+            /* Reloj. */
+            .modules-right > widget:last-child > #custom-notification {
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+        
+        /* Redondeo del widget más a la izquierda. */
+        
+            /* Áreas de trabajo. */
+            .modules-left > widget:first-child > #workspaces {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+        
+            /* Red. */
+            .modules-right > widget:first-child > #network {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+        
+            /* CPU. */
+            .modules-right > widget:first-child > #cpu {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }

@@ -4,12 +4,24 @@
 # Página del manual: "man 5 sway".
 
 ## Ajustes ##
-
-	# Activo los portales XDG durante el encendido para integrar las aplicaciones con el gestor de ventanas.
+    
+    # DBus activation.
+    # This fixes GTK apps taking 20+ seconds to load and it also starts the GNOME Keyring.
+    # Fuente: https://wiki.archlinux.org/title/GNOME/Keyring#Launching_gnome-keyring-daemon_outside_desktop_environments_(KDE,_GNOME,_XFCE,_...).
+    exec dbus-update-activation-environment --all
+    
+    # Activo los portales XDG durante el encendido para integrar las aplicaciones con el gestor de ventanas.
     # Fuente: https://wiki.gentoo.org/wiki/Flatpak#Desktop_integration_for_Wayland.
-    exec_always /usr/libexec/xdg-desktop-portal-gtk -r
-    exec_always /usr/libexec/xdg-desktop-portal-wlr -r
-    exec_always "sh -c 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'"
+    exec /usr/libexec/xdg-desktop-portal-gtk -r
+    exec /usr/libexec/xdg-desktop-portal-wlr -r
+    exec "sh -c 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'"
+
+    # Activo el servicio GNOME Polkit durante el encendido para las aplicaciones que requieran permisos de administrador.
+    # Fuente: https://askubuntu.com/questions/1170430/ubuntu-18-04-no-polkit-authentication-agent-found.
+    exec "/usr/libexec/polkit-gnome-authentication-agent-1"
+
+    # Activo el servicio GNOME Keyring Daemon durante el encendido mediante un script.
+    # exec_always /home/$USER/Documentos/GitHub/Scripts/Automatización/Gentoo/gkd-start.sh
     
     # Activo el servicio "Mako" durante el encendido para las notificaciones.
 	exec_always mako
@@ -35,8 +47,8 @@
 
 	# Configuración para especificar el grosor de las barras que rodean a las ventanas.
     # La opción "normal" es la que permite que haya barras de título, mientras que "pixel" las remueve.
-	default_border normal 2
-	default_floating_border normal 2
+	default_border pixel 2
+	default_floating_border pixel 2
 
     # Espacio entre las ventanas y los bordes.
     gaps inner 5
@@ -56,31 +68,53 @@
 
 	# Swaybar.
 	# Página del manual: "man 5 sway-bar".
-	bar {
-            position top
+	# bar {
+    #       position top
 
             # Cuando status_command imprime una nueva línea a stdout, swaybar se refresca.
             # El comando ahora mismo muestra el nivel de batería, seguido de la fecha y la hora.
             # Fuente: https://www.reddit.com/r/swaywm/comments/m3sbge/comment/gqsmxoe/.
-            status_command while date +[$(cat /sys/class/power_supply/BAT*/capacity)%]' | %Y-%m-%d | %I:%M:%S %p'; do sleep 1; done
+            # El comando de la hora está modificado para mostrar la hora en el formato de veinticuatro horas.
+            # Fuente: https://www.reddit.com/r/swaywm/comments/cygblt/what_time_format_do_you_prefer_for_the_status_bar/.
+    #       status_command while date +[$(cat /sys/class/power_supply/BAT*/capacity)%]' | %d-%m-%Y | %H:%M:%S %p'; do sleep 1; done
 
-                colors {
-                    statusline #FFFFFF
-                    background #323232
-                    inactive_workspace #32323200 #32323200 #5c5c5c
-                    focused_workspace #FF0000 #f76060 #FFFFFF
-                    urgent_workspace #240101 #690909 #FFFFFF
-                }
+    #           colors {
+    #               statusline #FFFFFF
+    #               background #323232
+    #               inactive_workspace #32323200 #32323200 #5c5c5c
+    #               focused_workspace #FF0000 #f76060 #FFFFFF
+    #               urgent_workspace #240101 #690909 #FFFFFF
+    #           }
+    # }
+
+    # Waybar.
+    bar {
+        swaybar_command waybar
     }
+
+	# Navegador.
+	set $browser firefox-bin
 
     # Terminal.
     set $term alacritty
 
+    # Gestor de Archivos.
+	set $files nautilus
+
+    # Software.
+	set $software gnome-software
+
+    # Configuración de Sway.
+	set $config vscodium --enable-features=UseOzonePlatform --ozone-platform=wayland --unity-launch $HOME/.config/sway/config
+
+    # Configuración de GNOME.
+	set $config2 gnome-control-center
+
+    # Gentool.
+    set $gentool gnome-terminal --window-with-profile=Gentoo 
+
     # Lanzador de aplicaciones.
-	set $menu rofi -show drun
-	
-	# Navegador.
-	set $browser firefox-bin
+	set $menu wofi --show drun
 
     # Áreas de trabajo.
 	# Fuente: https://www.reddit.com/r/swaywm/comments/hil7p5/change_workspace_names_for_swaywm/.
@@ -104,7 +138,7 @@
 		resolution 1366x768
 		position 0,0
 		scale 1
-        bg /home/$USER/Imágenes/Fondos de escritorio/Wallpaper.png fill
+        bg $HOME/Imágenes/Fondos de escritorio/Wallpaper.png fill
 	}
 	
 	# Touchpad.
@@ -124,11 +158,29 @@
 
     # Aplicaciones.
 
-        # Firefox.
+        # Navegador.
         bindsym Control+$mod+F exec $browser
 
         # Terminal.
         bindsym Control+Alt+T exec $term
+
+        # Gestor de Archivos.
+	    bindsym Control+Alt+F exec $files
+
+        # Tienda de Software.
+	    bindsym Control+Alt+S exec $software
+
+        # Configuración de Sway.
+	    bindsym Control+Alt+C exec $config
+
+    	# Configuración de GNOME.
+	    bindsym Control+Alt+G exec $config2
+
+        # Gentool.
+	    bindsym Control+Alt+Return exec $gentool
+
+        # Menú de aplicaciones.
+        bindsym $mod+d exec $menu
 
     # Acciones.
 
@@ -143,9 +195,6 @@
 
         # Cambio el enfoque entre una ventana flotante y una que está fijada.
         bindsym $mod+Shift+space focus mode_toggle
-        
-        # Menú de aplicaciones.
-        bindsym $mod+d exec $menu
         
         # Cambiar la ventana enfocada.
         bindsym $mod+Left focus left
@@ -243,8 +292,9 @@
         
         # Capturas de pantalla.
         # Fuente: https://thomas-leister.de/en/sway-window-manager/.
-        bindsym $mod+Print exec grim /home/$USER/Imágenes/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-        
+        bindsym $mod+Print exec grim $HOME/Imágenes/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+        bindsym $mod+Shift+Print exec grim -g "$(slurp)" $HOME/Imágenes/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+
         # Recargar el archivo de configuraciones.
         bindsym $mod+Shift+c reload
         

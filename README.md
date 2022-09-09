@@ -1,2 +1,2 @@
 # Dotfiles
- My config files for some software I use, like SwayWM or Waybar. The repository also includes a simple bash script I use to create copies of the config files whenever they are changed.
+ My config files for software I use, like SwayWM or Waybar. The repository also includes a bash script I use to create copies of the config files whenever they are changed. Credits for the script can be found in the [CREDITS.md](https://github.com/foopsss/Scripts/blob/main/CREDITS.md) file on my Scripts repo.
