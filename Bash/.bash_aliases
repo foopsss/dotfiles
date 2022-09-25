@@ -16,3 +16,5 @@
 	
 # Alias.
 alias dotcopy="bash $HOME/Documentos/GitHub/Dotfiles/Dotcopy.sh"
+alias makepdf="toolbox run -c lucas convert \*.png my_pdf.pdf"
+alias actualizar="bash /var/home/lucas/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh"
