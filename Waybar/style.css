@@ -112,6 +112,13 @@
         padding-right: 8px;
     }
     
+    /* Indicador de sonido. */
+    #pulseaudio {
+        background-color: #BB0000;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
     /* Modos especiales del gestor de ventanas. */
     #mode {
         color: #FFFFFF;
@@ -226,7 +233,7 @@
         /* Redondeo del widget más a la derecha. */
         
             /* Indicador de reposo. */
-            .modules-left > widget:last-child > #idle_inhibitor {
+            .modules-left > widget:last-child > #pulseaudio {
                 border-top-right-radius: 10px;
                 border-bottom-right-radius: 10px;
             }
