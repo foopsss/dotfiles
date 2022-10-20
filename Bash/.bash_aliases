@@ -7,7 +7,7 @@
 	GREEN_BD="\[\033[1;32m\]"
 	YELLOW_BD="\[\033[1;33m\]"
 	CYAN_BD="\[\033[1;36m\]"
-	PURPLE_BD="\\[\033[1;35m\]"
+	PURPLE_BD="\[\033[1;35m\]"
 	RESET="\[\033[0;0m\]"
 	
 	# Formato del prompt.
