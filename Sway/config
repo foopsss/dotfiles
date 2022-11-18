@@ -98,7 +98,7 @@
 	set $config2 gnome-control-center
 
     # Actualizaciones de Software.
-    set $updates gnome-terminal --window-with-profile=Updates
+    set $updates /var/home/lucas/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh
 
     # Lanzador de aplicaciones.
 	set $menu wofi --show drun

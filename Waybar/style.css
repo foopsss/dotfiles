@@ -55,6 +55,7 @@
 
     /* Áreas de trabajo. */
     #workspaces {
+        font-weight: bold;
         background: #262626;
         transition: none;
     }
@@ -114,6 +115,7 @@
     
     /* Indicador de sonido. */
     #pulseaudio {
+        color: #FFFFFF;
         background-color: #BB0000;
         padding-left: 8px;
         padding-right: 8px;

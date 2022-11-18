@@ -22,7 +22,8 @@
 	
 # Alias.
 alias dotcopy="bash $HOME/Documentos/GitHub/Dotfiles/Dotcopy.sh"
-alias makepdf="toolbox run -c lucas convert \*.png my_pdf.pdf"
-alias actualizar="bash $HOME/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh"
-alias vim="flatpak run org.vim.Vim"
 alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Linux/ && bash ADBTool.sh"
+alias actualizar="bash $HOME/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh"
+alias makepdf="toolbox run -c Lucas convert \*.png my_pdf.pdf"
+alias vim="flatpak run org.vim.Vim"
+alias htop="toolbox run -c Lucas htop"
