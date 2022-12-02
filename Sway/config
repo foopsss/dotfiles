@@ -92,7 +92,7 @@
 	set $software gnome-software
 
     # Configuración de Sway.
-	set $config flatpak run dev.lapce.lapce $HOME/.config/sway/config
+	set $config flatpak run org.gnome.TextEditor $HOME/.config/sway/config
 
     # Configuración de GNOME.
 	set $config2 gnome-control-center
