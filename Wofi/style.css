@@ -20,7 +20,7 @@ window {
 
 /* Ventana que contiene a todos los elementos. */
 #outer-box {
-    padding: 10px;
+    padding: 15px;
 }
 
 /* Barra de búsqueda. */
