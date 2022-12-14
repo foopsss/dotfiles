@@ -9,7 +9,7 @@
 	# Fuente: https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start 
 	exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
     
-    # Activo el servicio "Mako" durante el encendido para las notificaciones.
+    # Activo el servicio "SwayNC" durante el encendido para las notificaciones.
 	exec_always swaync
 
     # Activo XWayland durante el encendido para renderizar aplicaciones de X11.

@@ -24,17 +24,18 @@
 
 	# Programs.
 	alias vim="flatpak run org.vim.Vim"
-	alias htop="toolbox run -c Lucas htop"
+	alias htop="toolbox run -c lucas htop"
+	alias firefox="flatpak run org.mozilla.firefox"
 	
 	# Toolboxes.
-	alias Lucas="toolbox enter Lucas"
-	alias RPM="toolbox enter RPM"
-	alias ShellBox="toolbox enter ShellBox"
-	alias RustBox="toolbox enter RustBox"
-	alias CBox="toolbox enter CBox"
+	alias lucas="toolbox enter lucas"
+	alias rpm="toolbox enter rpm"
+	alias shellbox="toolbox enter shellbox"
+	alias rustbox="toolbox enter rustbox"
+	alias cbox="toolbox enter cbox"
 
 	# Miscellaneous.
 	alias dotcopy="bash $HOME/Documentos/GitHub/Dotfiles/Dotcopy.sh"
 	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 	alias actualizar="bash $HOME/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh"
-	alias makepdf="toolbox run -c Lucas convert \*.png my_pdf.pdf"
+	alias makepdf="toolbox run -c lucas convert \*.png my_pdf.pdf"

@@ -4,3 +4,5 @@ allow_markup=true
 term=alacritty
 sort_order=alphabetical
 no_actions=true
+width=50%
+height=50%
