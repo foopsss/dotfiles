@@ -32,3 +32,6 @@ fi
 
 # Global platform-tools
 export PATH=${PATH}:$HOME/Documentos/platform-tools
+
+# Comandos personalizados al abrir una terminal.
+colorscript -r

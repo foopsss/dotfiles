@@ -3,11 +3,20 @@
 	# Resguardo el prompt original.
 	default=$PS1
 	
-	# Colores.
+	# Colores con negrita.
 	GREEN_BD="\[\033[1;32m\]"
 	YELLOW_BD="\[\033[1;33m\]"
-	CYAN_BD="\[\033[1;36m\]"
 	PURPLE_BD="\[\033[1;35m\]"
+	CYAN_BD="\[\033[1;36m\]"
+	
+	# Colores de fondo con texto en negrita.
+	RED_BBD="\[\033[1;41m\]"
+	GREEN_BBD="\[\033[1;42m\]"
+	DBLUE_BBD="\[\e[1;48;5;017m\]"
+	PURPLE_BBD="\[\033[1;45m\]"
+	ORANGE_BD="\[\e[1;48;5;202m\]"
+	
+	# Miscelánea.
 	RESET="\[\033[0;0m\]"
 	
 	# Formato del prompt.
@@ -17,7 +26,28 @@
 		if [ -f "/run/.toolboxenv" ]
 		then
 			TOOLBOX_NAME=$(cat /run/.containerenv | grep -oP "(?<=name=\")[^\";]+")
-			PS1="${PURPLE_BD}[${TOOLBOX_NAME}]${RESET} ${YELLOW_BD}[\w]${RESET} ${CYAN_BD}[\t]${RESET} $ "
+			
+			# Estilo viejo de prompt. Guardado por si acaso.
+			# PS1="${PURPLE_BD}[${TOOLBOX_NAME}]${RESET} ${YELLOW_BD}[\w]${RESET} ${CYAN_BD}[\t]${RESET} $ "
+			
+			# Según el contenedor al que entre, elijo un color.
+			case $TOOLBOX_NAME in
+				lucas)
+					PS1="${RED_BBD}[${TOOLBOX_NAME}]${RESET} ${YELLOW_BD}[\w]${RESET} ${CYAN_BD}[\t]${RESET} $ "
+					;;
+				rpm)
+					PS1="${GREEN_BBD}[${TOOLBOX_NAME}]${RESET} ${YELLOW_BD}[\w]${RESET} ${CYAN_BD}[\t]${RESET} $ "
+					;;
+				shellbox)
+					PS1="${PURPLE_BBD}[${TOOLBOX_NAME}]${RESET} ${YELLOW_BD}[\w]${RESET} ${CYAN_BD}[\t]${RESET} $ "
+					;;
+				rustbox)
+					PS1="${ORANGE_BD}[${TOOLBOX_NAME}]${RESET} ${YELLOW_BD}[\w]${RESET} ${CYAN_BD}[\t]${RESET} $ "
+					;;
+				cbox)
+					PS1="${DBLUE_BBD}[${TOOLBOX_NAME}]${RESET} ${YELLOW_BD}[\w]${RESET} ${CYAN_BD}[\t]${RESET} $ "
+					;;
+			esac
 		fi
 	
 # Alias.
