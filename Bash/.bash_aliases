@@ -69,6 +69,7 @@
 
 	# Miscellaneous.
 	alias dotcopy="bash $HOME/Documentos/GitHub/Dotfiles/Dotcopy.sh"
+	alias specopy="bash $HOME/Documentos/GitHub/Specfiles/Specopy.sh"
 	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 	alias actualizar="bash $HOME/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh"
 	alias makepdf="toolbox run -c lucas convert \*.png my_pdf.pdf"

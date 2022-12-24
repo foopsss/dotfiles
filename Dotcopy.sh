@@ -50,7 +50,3 @@ for shconfig in ${shconfigs[@]}
 do
     ShellCheck $shconfig
 done
-
-echo "Copias finalizadas. Presione cualquier tecla para salir."
-read -n1
-exit
