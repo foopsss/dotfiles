@@ -328,6 +328,9 @@
 	# variable normal para que el botón izquierdo sirva para cambiar el tamaño de las
 	# ventanas y el botón derecho para arrastraslas.
 	floating_modifier $mod normal
+	
+	# Configuración de ventanas específicas.
+	assign [app_id="gnome-terminal-server"] workspace number 9
 
 	# Configuraciones varias.
 	include etc/sway/config.d/*
