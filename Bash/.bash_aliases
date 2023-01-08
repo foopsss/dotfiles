@@ -1,20 +1,10 @@
+# Importo colores de otro archivo.
+source .bash_colours
+
 # Personalización del bash prompt.
 	
-	# Colores con negrita.
-	GREEN_BD="\[\033[1;32m\]"
-	YELLOW_BD="\[\033[1;33m\]"
-	PURPLE_BD="\[\033[1;35m\]"
-	CYAN_BD="\[\033[1;36m\]"
-	
-	# Colores de fondo con texto en negrita.
-	RED_BBD="\[\033[1;41m\]"
-	GREEN_BBD="\[\033[1;42m\]"
-	DBLUE_BBD="\[\e[1;48;5;017m\]"
-	PURPLE_BBD="\[\033[1;45m\]"
-	ORANGE_BBD="\[\e[1;48;5;202m\]"
-	
-	# Miscelánea.
-	RESET="\[\033[0;0m\]"
+	# Formato alternativo del prompt.
+	# PS1="${RED_BD}[${RESET}${YELLOW_BD2}\u${RESET}${GREEN_BD}@${RESET}${BLUE_BD}\h${RESET}${RED_BD}]${RESET} ${YELLOW_BD}[\w]${RESET} ${SKYBLUE_BD}[\t]${RESET} ${ORANGE_BD}⚡${RESET} "
 	
 	# Formato del prompt.
 	PS1="${GREEN_BD}[\u@\h]${RESET} ${YELLOW_BD}[\w]${RESET} ${CYAN_BD}[\t]${RESET} $ "

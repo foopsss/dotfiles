@@ -34,7 +34,7 @@ ShellCheck() {
 }
 
 configs=("alacritty" "mako" "sway" "waybar" "wofi" "swaync")
-shconfigs=(".bashrc" ".bash_aliases")
+shconfigs=(".bashrc" ".bash_aliases" ".bash_colours")
 
 echo -n "Su directorio de entrada es: "
 echo $DIRIN
