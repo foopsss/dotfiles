@@ -51,6 +51,7 @@
 	alias neovim="flatpak run io.neovim.nvim"
 	alias htop="toolbox run -c lucas htop"
 	alias firefox="flatpak run org.mozilla.firefox"
+	alias gnome-tweaks="toolbox run -c lucas gnome-tweaks"
 	
 	# Toolboxes.
 	alias lucas="toolbox enter lucas"
