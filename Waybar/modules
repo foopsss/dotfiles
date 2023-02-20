@@ -9,10 +9,10 @@
 {
 
     // Ícono de Linux.
-    "custom/fedora": {
+    "custom/gentoo": {
         "format": "{icon}",
-        "format-icons": [""],
-        "on-click": "bash /home/lucas/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh",
+        "format-icons": [""],
+        "on-click": "bash /home/lucas/Documentos/GitHub/Scripts/Automatización/Gentoo/GenScript.sh",
     },
 
     "custom/notification": {

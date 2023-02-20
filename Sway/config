@@ -5,9 +5,20 @@
 
 ## Ajustes ##
     
-	# Activo el servicio "xdg-desktop-portal" durante el encendido.
-	# Fuente: https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start 
-	exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+	# DBus activation.
+	# This fixes GTK apps taking 20+ seconds to load and it also starts the GNOME Keyring.
+	# Fuente: https://wiki.archlinux.org/title/GNOME/Keyring#Launching_gnome-keyring-daemon_outside_desktop_environments_(KDE,_GNOME,_XFCE,_...).
+	exec dbus-update-activation-environment --all
+
+	# Activo los portales XDG durante el encendido para integrar las aplicaciones con el gestor de ventanas.
+	# Fuente: https://wiki.gentoo.org/wiki/Flatpak#Desktop_integration_for_Wayland.
+	exec /usr/libexec/xdg-desktop-portal-gtk -r
+	exec /usr/libexec/xdg-desktop-portal-wlr -r
+	exec "sh -c 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'"
+
+	# Activo el servicio GNOME Polkit durante el encendido para las aplicaciones que requieran permisos de administrador.
+	# Fuente: https://askubuntu.com/questions/1170430/ubuntu-18-04-no-polkit-authentication-agent-found.
+	exec "/usr/libexec/polkit-gnome-authentication-agent-1"
 
 	# Activo el servicio "SwayNC" durante el encendido para las notificaciones.
 	exec_always swaync
@@ -79,8 +90,7 @@
 	}
 
 	# Navegador.
-	# Correr Firefox con Wayland: https://www.reddit.com/r/LinuxCafe/comments/isdmmp/tip_use_firefox_flatpak_in_native_wayland_no/.
-	set $browser flatpak run --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 org.mozilla.firefox
+	set $browser firefox-bin
 
 	# Terminal.
 	set $term alacritty
@@ -88,17 +98,14 @@
 	# Gestor de Archivos.
 	set $files nautilus
 
-	# Software.
-	set $software gnome-software
-
 	# Configuración de Sway.
-	set $config flatpak run org.gnome.TextEditor $HOME/.config/sway/config
+	set $config gnome-text-editor $HOME/.config/sway/config
 
 	# Configuración de GNOME.
 	set $config2 gnome-control-center
 
-	# Actualizaciones de Software.
-	set $updates /var/home/lucas/Documentos/GitHub/Scripts/Automatización/Actualizaciones.sh
+	# Administración del sistema.
+	# set $mngmnt
 
 	# Lanzador de aplicaciones.
 	set $menu wofi --show drun
@@ -157,9 +164,6 @@
 		# Gestor de Archivos.
 		bindsym Control+Alt+F exec $files
 
-		# Tienda de Software.
-		bindsym Control+Alt+S exec $software
-
 		# Configuración de Sway.
 		bindsym Control+Alt+C exec $config
 
@@ -167,7 +171,7 @@
 		bindsym Control+Alt+G exec $config2
 
 		# Actualizaciones de Software.
-		bindsym Control+Alt+Return exec $updates
+		bindsym Control+Alt+Return exec $mngmnt
 
 		# Lanzador de aplicaciones.
 		bindsym $mod+d exec $menu
@@ -280,16 +284,17 @@
 		bindsym XF86MonBrightnessDown exec light -U 5
 
 		# Sonido.
-		# Fuente: https://www.reddit.com/r/swaywm/comments/qei3oh/comment/hhtvsen/.
-		bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-		bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-		bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+		# Fuente: https://wiki.gentoo.org/wiki/Sway#Sound_volume.
+		bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+		bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+		bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
 		# Capturas de pantalla.
 		# Fuente: https://thomas-leister.de/en/sway-window-manager/.
+		
 		bindsym $mod+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
 		bindsym $mod+p exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/PDF/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-		bindsym $mod+Shift+Print exec grim -g "$(slurp)" $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+		bindsym $mod+Shift+Print exec grim -q 100 -g "$(slurp)" $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
 
 		# Menú de notificaciones - No molestar.
 		bindsym $mod+Shift+n exec swaync-client -d -sw

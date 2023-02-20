@@ -33,7 +33,7 @@
         "include": "~/.config/waybar/modules",
         
         // Módulos de la izquierda.
-        "modules-left": ["sway/workspaces", "tray", "custom/fedora", "idle_inhibitor", "pulseaudio", "sway/mode"],
+        "modules-left": ["sway/workspaces", "tray", "custom/gentoo", "idle_inhibitor", "pulseaudio", "sway/mode"],
         
         // Módulos del centro.
         "modules-center": ["sway/window"],
