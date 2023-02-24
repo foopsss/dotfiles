@@ -24,5 +24,6 @@
 	alias sudo="doas"
 	alias battery="cat /sys/class/power_supply/BAT*/capacity"
 	alias dotcopy="bash $HOME/Documentos/GitHub/Dotfiles/Dotcopy.sh"
+	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Automatización/Gentoo/Ebcopy.sh"
 	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 	alias makepdf="convert \*.png my_pdf.pdf"
