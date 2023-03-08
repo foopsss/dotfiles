@@ -1,0 +1,33 @@
+windowcontrols .close,
+windowcontrols .maximize,
+windowcontrols .minimize {
+  border-radius: 20px;
+  min-height: 5px;
+  min-width: 5px;
+  padding: 1px;
+  margin: 2px;
+}
+
+windowcontrols .close:hover,
+windowcontrols .maximize:hover,
+windowcontrols .minimize:hover {
+  color:white;
+}
+
+windowcontrols .close {
+  /* border: 1px solid #BB0000; */
+  background-color: #FC1F53;
+  color: #FC1F53;
+}
+
+windowcontrols .maximize {
+  /* border: 1px solid #289B36; */
+  background-color: #279F35;
+  color: #279F35;
+}
+
+windowcontrols .minimize {
+  /* border: 1px solid #F89743; */
+  background-color: #FDBC40;
+  color: #FDBC40;
+}

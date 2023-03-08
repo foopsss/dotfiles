@@ -19,6 +19,9 @@
 	# Programs.
 	alias firefox="firefox-bin"
 	alias thunderbird="thunderbird-bin"
+	alias apostrophe="flatpak run org.gnome.gitlab.somas.Apostrophe"
+	alias flatseal="flatpak run com.github.tchx84.Flatseal"
+	alias steam="flatpak run com.valvesoftware.Steam"
 
 	# Miscellaneous.
 	alias sudo="doas"
