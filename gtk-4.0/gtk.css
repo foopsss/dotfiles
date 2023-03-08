@@ -1,3 +1,7 @@
+/* Archivo de estilización de GTK4 de Lucas. */
+/* Este archivo se debe copiar a ~/.config/gtk-4.0 para editar. */
+
+/* Estilo común de los botones. */
 windowcontrols .close,
 windowcontrols .maximize,
 windowcontrols .minimize {
@@ -8,26 +12,35 @@ windowcontrols .minimize {
   margin: 2px;
 }
 
-windowcontrols .close:hover,
-windowcontrols .maximize:hover,
-windowcontrols .minimize:hover {
-  color:white;
-}
-
+/* Estilo del botón para cerrar ventanas. */
 windowcontrols .close {
-  /* border: 1px solid #BB0000; */
   background-color: #FC1F53;
   color: #FC1F53;
 }
 
+  windowcontrols .close:hover {
+    background-color: #BB0000;
+    color: white;
+  }
+
+/* Estilo del botón para maximizar ventanas. */
 windowcontrols .maximize {
-  /* border: 1px solid #289B36; */
   background-color: #279F35;
   color: #279F35;
 }
 
+  windowcontrols .maximize:hover {
+    background-color: #1E7A29;
+    color: white;
+  }
+
+/* Estilo del botón para minimizar ventanas. */
 windowcontrols .minimize {
-  /* border: 1px solid #F89743; */
   background-color: #FDBC40;
   color: #FDBC40;
 }
+
+  windowcontrols .minimize:hover {
+    background-color: #CE7C39;
+    color: white;
+  }

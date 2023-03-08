@@ -1,3 +1,7 @@
+/* Archivo de estilización de GTK3 de Lucas. */
+/* Este archivo se debe copiar a ~/.config/gtk-3.0 para editar. */
+
+/* Estilo común de los botones. */
 button.titlebutton {
   border-radius: 20px;
   min-height: 5px;
@@ -6,26 +10,35 @@ button.titlebutton {
   margin: 2px;
 }
 
-button.titlebutton.close:hover,
-button.titlebutton.maximize:hover,
-button.titlebutton.minimize:hover {
-  color:white;
-}
-
+/* Estilo del botón para cerrar ventanas. */
 button.titlebutton.close {
-  /* border: 1px solid #BB0000; */
   background-color: #FC1F53;
   color: #FC1F53;
 }
 
+  button.titlebutton.close:hover {
+    background-color: #BB0000;
+    color:white;
+  }
+
+/* Estilo del botón para maximizar ventanas. */
 button.titlebutton.maximize {
-  /* border: 1px solid #289B36; */
   background-color: #279F35;
   color: #279F35;
 }
 
+  button.titlebutton.maximize:hover {
+    background-color: #1E7A29;
+    color:white;
+  }
+
+/* Estilo del botón para minimizar ventanas. */
 button.titlebutton.minimize {
-  /* border: 1px solid #F89743; */
   background-color: #FDBC40;
   color: #FDBC40;
 }
+
+  button.titlebutton.minimize:hover {
+    background-color: #CE7C39;
+    color:white;
+  }
