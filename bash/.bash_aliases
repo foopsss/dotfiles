@@ -29,5 +29,7 @@
 	alias dotcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Dotcopy.sh"
 	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
 	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Ebcopy.sh"
+	alias copy="dotcopy && gencopy && ebcopy"
+	alias update="emerge -avquDN @world && flatpak update -y"
 	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 	alias makepdf="convert \*.png my_pdf.pdf"
