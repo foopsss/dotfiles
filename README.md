@@ -1,2 +1,7 @@
 # Dotfiles
- My config files for software I use, like SwayWM or Waybar. The repository also includes a bash script I use to create copies of the config files whenever they are changed. Credits for the script can be found in the [CREDITS.md](https://github.com/foopsss/Scripts/blob/main/CREDITS.md) file on my Scripts repo.
+This is the "fedora" branch of my Dotfiles repo, where I store the configuration files I used for Fedora, my previous Linux distro. The configuration files for my current distro, Gentoo, can be found on the "gentoo" branch.
+
+# Software
+* Bash.
+* Sway.
+* Waybar.
