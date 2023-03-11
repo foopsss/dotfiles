@@ -7,6 +7,7 @@ The script I use to backup all of my dotfiles is located on my [Scripts](https:/
 * Alacritty.
 * Bash.
 * GTK3/4.
+* Hyprland.
 * Sway.
 * SwayNC.
 * Waybar.
