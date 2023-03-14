@@ -26,6 +26,8 @@
 	# Miscellaneous.
 	alias sudo="doas"
 	alias battery="cat /sys/class/power_supply/BAT*/capacity"
+	alias brightness="cat /sys/class/backlight/amdgpu_bl0/actual_brightness"
+	alias maxbrightness="cat /sys/class/backlight/amdgpu_bl0/max_brightness"
 	alias dotcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Dotcopy.sh"
 	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
 	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Ebcopy.sh"

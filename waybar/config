@@ -33,13 +33,13 @@
         "include": "~/.config/waybar/modules",
         
         // Módulos de la izquierda.
-        "modules-left": ["sway/workspaces", "tray", "custom/gentoo", "idle_inhibitor", "pulseaudio", "sway/mode"],
+        "modules-left": ["sway/workspaces", "tray", "custom/gentoo", "idle_inhibitor", "custom/brightness", "pulseaudio", "sway/mode"],
         
         // Módulos del centro.
         "modules-center": ["sway/window"],
         
         // Módulos de la derecha.
-        "modules-right": ["network", "cpu", "memory", "temperature", "battery", "clock", "custom/notification"],
+        "modules-right": ["network", "cpu", "memory", "temperature", "battery", "clock", "custom/notifications"],
         
     // Configuración de los módulos.
     // NOTA: si el formato de alguno de los módulos no es especificado, este no se muestra.
