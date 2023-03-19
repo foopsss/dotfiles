@@ -22,16 +22,18 @@
 	alias apostrophe="flatpak run org.gnome.gitlab.somas.Apostrophe"
 	alias flatseal="flatpak run com.github.tchx84.Flatseal"
 	alias steam="flatpak run com.valvesoftware.Steam"
+	
+	# Shell scripts.
+	alias dotcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Dotcopy.sh"
+	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
+	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Ebcopy.sh"
+	alias copy="dotcopy && gencopy && ebcopy"
+	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 
 	# Miscellaneous.
 	alias sudo="doas"
 	alias battery="cat /sys/class/power_supply/BAT*/capacity"
 	alias brightness="cat /sys/class/backlight/amdgpu_bl0/actual_brightness"
 	alias maxbrightness="cat /sys/class/backlight/amdgpu_bl0/max_brightness"
-	alias dotcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Dotcopy.sh"
-	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
-	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Ebcopy.sh"
-	alias copy="dotcopy && gencopy && ebcopy"
-	alias update="emerge -avquDN @world && flatpak update -y"
-	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
+	alias update="emerge -avquDN @world && flatpak update -y && fwupdmgr refresh --force && fwupdmgr get-updates && fwupdmgr update"
 	alias makepdf="convert \*.png my_pdf.pdf"
