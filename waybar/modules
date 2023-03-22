@@ -12,7 +12,7 @@
     "custom/gentoo": {
         "format": "{icon}",
         "format-icons": [""],
-        "on-click": "bash /home/lucas/Documentos/GitHub/Scripts/Automatización/Gentoo/GenScript.sh",
+        "on-click": "alacritty -e bash $HOME/Documentos/GitHub/Scripts/Automatización/Gentoo/GenScript/GenScript.sh",
     },
     
     // Indicador de brillo.

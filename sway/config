@@ -107,7 +107,7 @@
 	set $config2 gnome-control-center
 
 	# Administración del sistema.
-	# set $mngmnt
+	set $mngmnt alacritty -e bash $HOME/Documentos/GitHub/Scripts/Automatización/Gentoo/GenScript/GenScript.sh
 
 	# Lanzador de aplicaciones.
 	set $menu wofi --show drun

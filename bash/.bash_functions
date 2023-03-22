@@ -63,3 +63,38 @@ incorrect_selection() {
 	RBT "¡Selección incorrecta! Por favor, intente de nuevo."
 }
 export -f incorrect_selection
+
+ask_package() {
+	Línea
+	echo -n "Nombre del paquete: "
+	read package
+	Línea
+}
+
+ask_repository() {
+	Línea
+	echo -n "Nombre del repositorio: "
+	read repository
+	Línea
+}
+
+ask_use() {
+	Línea
+	echo -n "Nombre del parámetro: "
+	read use
+	Línea
+}
+
+ask_news() {
+	Línea
+	echo -n "Número de noticia: "
+	read news
+	Línea
+}
+
+ask_command() {
+	Línea
+	echo -n "Comando: "
+	read command
+	Línea
+}

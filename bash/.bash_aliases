@@ -24,11 +24,12 @@
 	alias steam="flatpak run com.valvesoftware.Steam"
 	
 	# Shell scripts.
+	alias genscript="cd $HOME/Documentos/GitHub/Scripts/Automatización/Gentoo/GenScript && bash GenScript.sh && cd"
+	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 	alias dotcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Dotcopy.sh"
 	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
 	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Ebcopy.sh"
 	alias copy="dotcopy && gencopy && ebcopy"
-	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 
 	# Miscellaneous.
 	alias sudo="doas"
