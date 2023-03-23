@@ -22,9 +22,6 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-# Add ADB and Fastboot commands to the PATH variable.
-export PATH=${PATH}:$HOME/Documentos/platform-tools
-
 # Allow the GNOME Terminal to inherit the previous working directory on a new tab.
 # Also allows to get notified of long-running commands finishing.
 if [ "$TERM" == "xterm-256color" ]; then
