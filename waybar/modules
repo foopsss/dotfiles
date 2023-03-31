@@ -17,17 +17,16 @@
     
     // Indicador de brillo.
     "custom/brightness": {
-        "format": "{}% {icon}",
+        "format": "{icon} {}%",
         "format-icons": [""],
         "exec": "exec cat /sys/class/backlight/amdgpu_bl0/actual_brightness",
         "interval": 1,
-        "on-click": "gnome-control-center screen",
     },
 
     // Recuento de notificaciones.
     "custom/notifications": {
         "tooltip": true,
-        "format": "{} {icon}",
+        "format": "{icon} {}",
         "format-icons": {
             "notification": "<span foreground='green'></span>",
             "none": "",

@@ -98,3 +98,10 @@ ask_command() {
 	read command
 	Línea
 }
+
+ask_version () {
+	Línea
+	echo -n "Versión: "
+	read version
+	Línea
+}

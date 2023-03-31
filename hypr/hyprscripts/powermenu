@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Way to get the session ID taken from StackExchange.
+# Source: https://unix.stackexchange.com/questions/72203/logout-user-with-systemd.
+session=`loginctl session-status | head -n 1 | awk '{print $1}'`
+
+swaynag -f "Terminus" \
+		-m "Utilizaste el atajo de salida. ¿Te gustaría salir de Hyprland? Esto cerrará tu sesión actual de Wayland." \
+		-B "Salir de Hyprland" "loginctl terminate-session $session" \
+		-B "Suspender" "systemctl suspend && pkill swaynag" \
+		-B "Reiniciar" "systemctl reboot" \
+		-B "Apagar" "systemctl poweroff" \

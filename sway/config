@@ -1,4 +1,4 @@
-### Archivo de configuraciones de Sway de Lucas ###
+### Archivo de configuración de Sway de Lucas ###
 # Este archivo se debe copiar a ~/.config/sway/config para editar.
 # Página de GitHub del proyecto: https://github.com/swaywm/sway.
 # Página del manual: "man 5 sway".
@@ -21,13 +21,41 @@
 	# Activo el servicio GNOME Polkit durante el encendido para las aplicaciones que requieran permisos de administrador.
 	# Fuente: https://askubuntu.com/questions/1170430/ubuntu-18-04-no-polkit-authentication-agent-found.
 	exec "/usr/libexec/polkit-gnome-authentication-agent-1"
+	
+	# Activo Waybar durante el encendido para tener una barra de estado.
+	exec "waybar --bar main-bar --config ~/.config/waybar/sway/config --style ~/.config/waybar/sway/style.css"
 
 	# Activo el servicio "SwayNC" durante el encendido para las notificaciones.
 	exec_always swaync
 
-	# Activo XWayland durante el encendido para renderizar aplicaciones de X11.
+	# Activo XWayland durante el encendido para utilizar aplicaciones de X11.
 	# No se inicializa por completo hasta utilizar una aplicación que lo requiera.
 	xwayland enable
+	
+## Entradas ##
+# Se puede obtener un listado de los dispositivos de entrada utilizando "swaymsg -t get_inputs".
+# Se puede obtener un listado de los dispositivos de salida utilizando "swaymsg -t get_outputs".
+
+	# Monitor.
+	output eDP-1 {
+		resolution 1366x768
+		position 0,0
+		scale 1
+        bg $HOME/Imágenes/Fondos de escritorio/Wallpaper.png fill
+	}
+	
+	# Touchpad.
+	input "2:14:ETPS/2_Elantech_Touchpad" {
+		dwt enabled
+		tap enabled
+		natural_scroll enabled
+		middle_emulation enabled
+	}
+	
+	# Teclado.
+	input "*" {
+		xkb_layout latam
+	}
 
 ## Estilo ##
 
@@ -37,14 +65,14 @@
 	set $color2 #FFFFFF
 	set $color3 #999999
 
-	# Color de las barras de una ventana cuando está enfocada.
+	# Color de los bordes de una ventana cuando está enfocada.
 	client.focused $color1 $color1 $color2 $color1 $color1
 
-	# Color de las barras de una ventana cuando no está enfocada.
+	# Color de los bordes de una ventana cuando no está enfocada.
 	client.focused_inactive $color3 $color3 $color2 $color3 $color3
 	client.unfocused $color3 $color3 $color2 $color3 $color3
 
-	# Configuración para especificar el grosor de las barras que rodean a las ventanas.
+	# Configuración para especificar el grosor de los bordes que rodean a las ventanas.
 	# La opción "normal" es la que permite que haya barras de título, mientras que "pixel" las remueve.
 	default_border pixel 2
 	default_floating_border pixel 2
@@ -86,11 +114,6 @@
         #       }
 	# }
 
-	# Waybar.
-	bar {
-		swaybar_command waybar
-	}
-
 	# Navegador.
 	set $browser firefox-bin
 
@@ -127,31 +150,46 @@
 	set $ws8 8
 	set $ws9 9
 	set $ws10 10
-
-## Entradas ##
-# Se puede obtener un listado de los dispositivos de entrada utilizando "swaymsg -t get_inputs".
-# Se puede obtener un listado de los dispositivos de salida utilizando "swaymsg -t get_outputs".
-
-	# Monitor.
-	output eDP-1 {
-		resolution 1366x768
-		position 0,0
-		scale 1
-        bg $HOME/Imágenes/Fondos de escritorio/Wallpaper.png fill
-	}
 	
-	# Touchpad.
-	input "2:14:ETPS/2_Elantech_Touchpad" {
-		dwt enabled
-		tap enabled
-		natural_scroll enabled
-		middle_emulation enabled
-	}
+## Acciones ##
+
+	# Brillo.
+	set $brightnessup light -A 5
+	set $brightnessdown light -U 5 
 	
-	# Teclado.
-	input "*" {
-		xkb_layout latam
-	}
+	# Sonido.
+	set $volumeup wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+	set $volumedown wpctl set-volume -l 0 @DEFAULT_AUDIO_SINK@ 5%-
+	set $mute wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+	
+	# Capturas de pantalla.
+	# Fuente: https://thomas-leister.de/en/sway-window-manager/.
+	
+		# Copy screenshot to the clipboard.
+		set $screenshotclip grim - | wl-copy
+		
+		# Guardar una captura de la pantalla.
+		set $screenshot grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+		
+		# Guardar una captura de un área específica de la pantalla.
+		set $screenshotregion grim -g "$(slurp)" $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+		
+		# Guardar una captura para crear un PDF.
+		set $screenshotpdf grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/PDF/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+	
+	# Menú de notificaciones - no molestar.
+	set $dnd swaync-client -d -sw
+	
+	# Bloquear la pantalla.
+	set $swaylock swaylock -c 000000
+
+	# Menú de encendido/apagado.
+	set $powermenu swaynag -f "Terminus" \
+			-m "Utilizaste el atajo de salida. ¿Te gustaría salir de Sway? Esto cerrará tu sesión actual de Wayland." \
+			-B "Sí, salir de Sway." "swaymsg exit" \
+			-B "No, suspender." "systemctl suspend && pkill swaynag" \
+			-B "Sí, reiniciar." "systemctl reboot" \
+			-B "Sí, apagar." "systemctl poweroff" \
 
 ## Atajos ##
 
@@ -172,7 +210,7 @@
 		# Configuración de GNOME.
 		bindsym Control+Alt+G exec $config2
 
-		# Actualizaciones de Software.
+		# Administración del sistema.
 		bindsym Control+Alt+Return exec $mngmnt
 
 		# Lanzador de aplicaciones.
@@ -282,45 +320,47 @@
 		bindsym $mod+v splitv
 
 		# Brillo.
-		bindsym XF86MonBrightnessUp exec light -A 5
-		bindsym XF86MonBrightnessDown exec light -U 5
+		bindsym XF86MonBrightnessUp exec $brightnessup
+		bindsym XF86MonBrightnessDown exec $brightnessdown
 
 		# Sonido.
 		# Fuente: https://wiki.gentoo.org/wiki/Sway#Sound_volume.
-		bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-		bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-		bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+		bindsym XF86AudioMute exec $mute
+		bindsym XF86AudioRaiseVolume exec $volumeup
+		bindsym XF86AudioLowerVolume exec $volumedown
 
 		# Capturas de pantalla.
-		# Fuente: https://thomas-leister.de/en/sway-window-manager/.
-		bindsym Print exec grim - | wl-copy
-		bindsym $mod+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-		bindsym $mod+p exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/PDF/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-		bindsym $mod+Shift+Print exec grim -q 100 -g "$(slurp)" $(xdg-user-dir PICTURES)/"Capturas de pantalla"/"Capturas de Grim"/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+		
+			# Copiar captura de pantalla al portapapeles.
+			bindsym Print exec $screenshotclip
+			
+			# Guardar una captura de la pantalla.
+			bindsym $mod+Print exec $screenshot
+			
+			# Guardar una captura de un área específica de la pantalla.
+			bindsym $mod+Shift+Print exec $screenshotregion
+			
+			# Guardar una captura para crear un PDF.
+			bindsym $mod+p exec $screenshotpdf
 
 		# Menú de notificaciones - No molestar.
-		bindsym $mod+Shift+n exec swaync-client -d -sw
+		bindsym $mod+Shift+n exec $dnd
 
 		# Recargar el archivo de configuraciones.
 		bindsym $mod+Shift+c reload
 		
 		# Bloquear la pantalla.
-		bindsym $mod+escape exec swaylock -c 000000
+		bindsym $mod+escape exec $swaylock
 
 		# Menú de encendido/apagado.
 		# Fuente: https://www.reddit.com/r/swaywm/comments/uviw6i/making_the_modshifte_exit_menu_more_useful/.
-		bindsym $mod+Shift+e exec swaynag -f "Terminus" \
-		-m "Utilizaste el atajo de salida. ¿Te gustaría salir de Sway? Esto cerrará tu sesión actual de Wayland." \
-		-B "Sí, salir de Sway." "swaymsg exit" \
-		-B "No, suspender." "systemctl suspend && pkill swaynag" \
-		-B "Sí, reiniciar." "systemctl reboot" \
-		-B "Sí, apagar." "systemctl poweroff" \
+		bindsym $mod+Shift+e exec $powermenu
 
 ## Miscelánea ##
 
 	# Suspensión del equipo.
 	# Esta configuración bloquea la pantalla luego de 1000 segundos de inactividad
-	# y luego apaga la pantalla luego de otros 400 segundos de inactividad, encendiéndola
+	# y luego apaga la pantalla luego de otros 600 segundos de inactividad, encendiéndola
 	# nuevamente al volver a utilizar el dispositivo. También bloquea la pantalla antes
 	# de que el dispositivo entre en reposo.
 	exec swayidle -w \
