@@ -167,6 +167,10 @@ window#waybar.hidden {
             margin-left: 7px;
         }
         
+            #network.disconnected {
+                background-color: #F53C3C;
+            }
+        
         #memory {
             color: #F8F8F2;
             background-color: #9B59B6;
@@ -251,3 +255,12 @@ window#waybar.hidden {
         padding-left: 7px;
         padding-right: 7px;
     }
+    
+/* Condiciones especiales para la estilización. */
+
+    /* Redondeo de los bordes del widget más a la izquierda. */
+
+        /* RAM. */
+        .modules-right > widget:first-child > #memory {
+            border-radius: 7px 0px 0px 7px;
+        }
