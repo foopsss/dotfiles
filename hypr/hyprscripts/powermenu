@@ -6,7 +6,7 @@ session=`loginctl session-status | head -n 1 | awk '{print $1}'`
 
 swaynag -f "Terminus" \
 		-m "Utilizaste el atajo de salida. ¿Te gustaría salir de Hyprland? Esto cerrará tu sesión actual de Wayland." \
-		-B "Salir de Hyprland" "loginctl terminate-session $session" \
-		-B "Suspender" "systemctl suspend && pkill swaynag" \
-		-B "Reiniciar" "systemctl reboot" \
-		-B "Apagar" "systemctl poweroff" \
+		-B "Sí, salir de Hyprland." "loginctl terminate-session $session" \
+		-B "No, suspender." "systemctl suspend && pkill swaynag" \
+		-B "Sí, reiniciar." "systemctl reboot" \
+		-B "Sí, apagar." "systemctl poweroff" \
