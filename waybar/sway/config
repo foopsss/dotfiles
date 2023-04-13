@@ -33,7 +33,7 @@
         "include": "~/.config/waybar/modules",
         
         // Módulos de la izquierda.
-        "modules-left": ["custom/gentoo", "idle_inhibitor", "custom/brightness", "pulseaudio", "sway/workspaces", "tray", "sway/mode"],
+        "modules-left": ["custom/gentoo", "idle_inhibitor", "custom/brightness", "wireplumber", "sway/workspaces", "tray", "sway/mode"],
         
         // Módulos del centro.
         "modules-center": ["sway/window"],
@@ -54,14 +54,11 @@
         },
         
         // Volumen.
-        "pulseaudio": {
+        "wireplumber": {
           "format": "{icon} {volume}%",
           "format-muted": "",
-          "format-icons": {
-            "default": ["", "", ""],
-          },
-          "max-volume": "100",
           "on-click": "gnome-control-center sound",
+          "format-icons": ["", "", ""],
         },
         
         // Áreas de trabajo.
