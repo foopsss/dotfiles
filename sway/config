@@ -377,7 +377,11 @@
 	floating_modifier $mod normal
 	
 	# Configuración de ventanas específicas.
-	assign [app_id="gnome-terminal-server"] workspace number 9
+	
+		# Etiqueto las ventanas que utilizan Wayland y las que utilizan XWayland.
+		# Fuente: https://www.reddit.com/r/swaywm/comments/iwcfgb/comment/g5zld3q/?context=3.
+		for_window [shell="xdg_shell"] title_format "%title [Wayland]"
+		for_window [shell="xwayland"] title_format "%title [XWayland]"
 
 	# Configuraciones varias.
 	include etc/sway/config.d/*
