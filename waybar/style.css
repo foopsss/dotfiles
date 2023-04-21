@@ -1,5 +1,5 @@
-/* Archivo de estilización de Waybar para Hyprland de Lucas. */
-/* Este archivo se debe copiar a ~/.config/waybar/hyprland para editar. */
+/* Archivo de estilización de Waybar para Sway de Lucas. */
+/* Este archivo se debe copiar a ~/.config/waybar/sway para editar. */
 /* Referencia de estilización: https://github.com/Alexays/Waybar/wiki/Styling */
 
 /*
@@ -10,10 +10,6 @@
     * https://github.com/1amSimp1e/dots/blob/balcony%F0%9F%9A%8A/configs/waybar/style.css
     * https://github.com/SolDoesTech/hyprland/blob/main/waybar/style.css
 */
-
-/* NOTAS */
-/* La propiedad margin es la que permite ajustar el espaciado entre un bloque de contenido y la barra de estado. */
-/* La propiedad padding permite ajustar el espaciado dentro de un bloque de contenido, separando el contenido de los bordes. */
 
 /* Fuente. */
 * {
@@ -29,6 +25,12 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
+window#waybar.empty #window {
+    border: transparent;
+    color: transparent;
+    background-color: rgba(0, 0, 0, 0);
+}
+ 
 /* Estilo de los módulos. */
 
     /* Ícono de Linux e indicador de reposo. */
@@ -101,6 +103,12 @@ window#waybar.hidden {
             transition: none;
         }
 
+        #workspaces button.focused {
+            color: #00FC69;
+            font-weight: bold;
+        }
+        
+        /* This specific bit is for Hyprland. */
         #workspaces button.active {
             color: #00FC69;
             font-weight: bold;
@@ -136,6 +144,20 @@ window#waybar.hidden {
         #tray > .needs-attention {
             -gtk-icon-effect: highlight;
         }
+        
+    /* Modos especiales del gestor de ventanas. */
+    #mode {
+      border-radius: 7px;
+      color: #FFFFFF;
+      background-color: #F76060;
+      margin-top: 7px;
+      margin-bottom: 7px;
+      margin-left: 7px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      padding-left: 7px;
+      padding-right: 7px;
+    }
         
     /* Ventana enfocada. */
     #window {

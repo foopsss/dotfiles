@@ -23,7 +23,7 @@
 	exec "/usr/libexec/polkit-gnome-authentication-agent-1"
 	
 	# Activo Waybar durante el encendido para tener una barra de estado.
-	exec "waybar --bar main-bar --config ~/.config/waybar/sway/config --style ~/.config/waybar/sway/style.css"
+	exec "waybar --bar main-bar --config ~/.config/waybar/sway/config --style ~/.config/waybar/style.css"
 
 	# Activo el servicio "SwayNC" durante el encendido para las notificaciones.
 	exec_always swaync

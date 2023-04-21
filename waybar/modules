@@ -15,12 +15,93 @@
         "on-click": "alacritty -e bash $HOME/Documentos/GitHub/Scripts/Automatización/Gentoo/GenScript/GenScript.sh",
     },
     
+    // Indicador de reposo.
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": "",
+      }
+    },
+    
     // Indicador de brillo.
     "custom/brightness": {
         "format": "{icon} {}%",
         "format-icons": [""],
         "exec": "exec cat /sys/class/backlight/amdgpu_bl0/actual_brightness",
         "interval": 1,
+    },
+    
+    // Volumen.
+    "wireplumber": {
+      "format": "{icon} {volume}%",
+      "format-muted": "",
+      "on-click": "gnome-control-center sound",
+      "format-icons": ["", "", ""],
+    },
+    
+    // Bandeja de aplicaciones minimizadas.
+    "tray": {
+        "icon-size": 22,
+        "spacing": 10,
+    },
+    
+    // Conexión.
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": " {essid} - {ifname} via {gwaddr}",
+    },
+    
+    // Memoria.
+    "memory": {
+        "format": " {}%",
+        "on-click": "alacritty -e htop",
+    },
+    
+    // CPU.
+    "cpu": {
+        "format": " {usage}%",
+        "on-click": "gnome-system-monitor -r",
+    },
+    
+    // Temperatura.
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        "format-critical": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "interval": 10,
+    },
+    
+    // Batería.
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20,
+        },
+        "format": "{icon} {capacity}%",
+        "format-good": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""],
+        "interval": 60,
+    },
+            
+    // Reloj.
+    "clock": {
+        "format": " {:%H:%M}",
+        "format-alt": "{:%d-%m-%Y}",
+        "tooltip-format": "<big>{:%B de %Y}</big>\n<tt><small>{calendar}</small></tt>",
     },
 
     // Recuento de notificaciones.
