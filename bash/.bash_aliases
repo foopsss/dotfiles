@@ -23,18 +23,20 @@
 	alias flatseal="flatpak run com.github.tchx84.Flatseal"
 	alias steam="flatpak run com.valvesoftware.Steam"
 	
-	# Shell scripts.
+	# Menu scripts.
 	alias genscript="cd $HOME/Documentos/GitHub/Scripts/Automatización/Gentoo/GenScript && bash GenScript.sh && cd"
 	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
+	
+	# Backup scripts.
+	alias copy="cd $HOME/Documentos/GitHub/Scripts/Backups/Bash && bash Backups.sh"
 	alias dotcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Dotcopy.sh"
-	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
 	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Ebcopy.sh"
-	alias copy="dotcopy && gencopy && ebcopy"
+	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
+	alias natgencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Natgencopy.sh"
 
 	# Miscellaneous.
 	alias sudo="doas"
 	alias battery="cat /sys/class/power_supply/BAT*/capacity"
 	alias brightness="cat /sys/class/backlight/amdgpu_bl0/actual_brightness"
 	alias maxbrightness="cat /sys/class/backlight/amdgpu_bl0/max_brightness"
-	alias update="emerge -avquDN @world && flatpak update -y && fwupdmgr refresh --force && fwupdmgr get-updates && fwupdmgr update"
 	alias makepdf="convert \*.png my_pdf.pdf"
