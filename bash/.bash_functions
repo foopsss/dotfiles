@@ -15,6 +15,13 @@ BT() {
 }
 export -f BT
 
+RBT() {
+	# RBT es el acrónimo para Red Bold Text.
+	# Esta función imprime texto blanco, sobre un fondo rojo y en negritas.
+	echo -e "\e[1;41m$1\e[0m"
+}
+export -f RBT
+
 GBT() {
 	# GBT es el acrónimo para Green Bold Text.
 	# Esta función imprime texto blanco, sobre un fondo verde y en negritas.
