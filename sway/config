@@ -20,10 +20,10 @@
 
 	# Activo el servicio GNOME Polkit durante el encendido para las aplicaciones que requieran permisos de administrador.
 	# Fuente: https://askubuntu.com/questions/1170430/ubuntu-18-04-no-polkit-authentication-agent-found.
-	exec "/usr/libexec/polkit-gnome-authentication-agent-1"
+	exec /usr/libexec/polkit-gnome-authentication-agent-1
 	
 	# Activo Waybar durante el encendido para tener una barra de estado.
-	exec "waybar --bar main-bar --config ~/.config/waybar/sway/config --style ~/.config/waybar/style.css"
+	exec waybar --bar main-bar --config ~/.config/waybar/sway/config --style ~/.config/waybar/style.css
 
 	# Activo el servicio "SwayNC" durante el encendido para las notificaciones.
 	exec_always swaync
