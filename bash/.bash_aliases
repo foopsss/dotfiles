@@ -28,7 +28,7 @@
 	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 	
 	# Backup scripts.
-	alias copy="cd $HOME/Documentos/GitHub/Scripts/Backups/Bash && bash Backups.sh"
+	alias copy="cd $HOME/Documentos/GitHub/Scripts/Backups/Bash && bash Backups.sh && cd"
 	alias dotcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Dotcopy.sh"
 	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Ebcopy.sh"
 	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
