@@ -14,24 +14,31 @@
   background: transparent;
 }
 
-/* Botones. */
-.power-buttons > button,
+/* Botones de acción. */
+.poweroff-button > button,
+.reboot-button > button,
 .lock-button > button,
-.settings-button > button,
 .screenshot-button > button,
-.battery-button > button {
+.battery-button > button,
+.settings-button > button {
   border: none;
   border-radius: 20px;
   background: transparent;
-  margin: 2px;
+  margin-top: 6px;
 }
 
-  /* Botón de encendido. */
-  .power-buttons > button {
-    padding-right: 2px;
+  /* Botón de ajustes. */
+  .settings-button > button {
+    margin-left: 5px;
+  }
+
+  /* Botón de apagado. */
+  .poweroff-button > button {
+    margin-right: 5px;
   }
   
-  /* Botón de batería. */
-  .battery-button > button {
-    padding-right: 2px;
-  }
+/* Quick toggles. */
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  padding-left: 28px;
+  padding-right: 28px;
+}

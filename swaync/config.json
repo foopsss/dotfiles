@@ -38,26 +38,27 @@
     "widget-config": {
     
         "menubar#label": {
-            
-            "menu#power-buttons": {
-                "label": "", 
+
+            "buttons#poweroff-button": {
                 "position": "right",
                 "actions": [ 
-                  {
-                    "label": " Reiniciar...",
-                    "command": "systemctl reboot"
-                  },
-                  {
-                    "label": " Apagar...",
-                    "command": "systemctl poweroff"
-                  },
-                  {
-                    "label": " Cerrar la sesión...",
-                    "command": "swaymsg exit"
-                  }
+                    {
+                        "label": "",
+                        "command": "systemctl poweroff -i"
+                    }
                 ]
             },
-            
+
+            "buttons#reboot-button": {
+                "position": "right",
+                "actions": [ 
+                    {
+                        "label": "",
+                        "command": "systemctl reboot"
+                    }
+                ]
+            },
+
             "buttons#lock-button": {
                 "position": "right",
                 "actions": [ 
@@ -67,23 +68,13 @@
                     }
                 ]
             },
-            
+
             "buttons#settings-button": {
-                "position": "right",
+                "position": "left",
                 "actions": [ 
                     {
                         "label": "",
                         "command": "gnome-control-center"
-                    }
-                ]
-            },
-            
-            "buttons#screenshot-button": {
-                "position": "right",
-                "actions": [ 
-                    {
-                        "label": "",
-                        "command": "grim - | wl-copy"
                     }
                 ]
             },
@@ -94,6 +85,16 @@
                     {
                         "label": "",
                         "command": "gnome-control-center power"
+                    }
+                ]
+            },
+            
+            "buttons#screenshot-button": {
+                "position": "left",
+                "actions": [ 
+                    {
+                        "label": "",
+                        "command": "grim - | wl-copy"
                     }
                 ]
             }
