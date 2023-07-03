@@ -1,3 +1,11 @@
+/* Archivo de estilización de SwayNotificationCenter de Lucas. */
+/* Este archivo se debe copiar a ~/.config/swaync para editar. */
+
+/*
+    Configuraciones utilizadas como referencia:
+    * https://gist.github.com/JannisPetschenka/9dd1db8f3d2b26e6c58b98afab5ec262
+*/
+
 /* Colores a utilizar. */
 @define-color control-center-colour #262626;
 @define-color buttons-colour #303030;
