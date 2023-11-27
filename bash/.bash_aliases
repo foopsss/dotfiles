@@ -24,15 +24,15 @@
 	alias steam="flatpak run com.valvesoftware.Steam"
 	
 	# Menu scripts.
-	alias genscript="cd $HOME/Documentos/GitHub/Scripts/Automatización/Gentoo/GenScript && bash GenScript.sh && cd"
-	alias adbtool="cd $HOME/Documentos/GitHub/Scripts/ADB/Bash/ && bash ADBTool.sh && cd"
+	alias genscript="cd $HOME/Documentos/GitHub/scripts/Automatización/Gentoo/GenScript && bash GenScript.sh && cd"
+	alias adbtool="cd $HOME/Documentos/GitHub/scripts/ADB/Bash/ && bash ADBTool.sh && cd"
 	
 	# Backup scripts.
-	alias copy="cd $HOME/Documentos/GitHub/Scripts/Backups/Bash && bash Backups.sh && cd"
-	alias dotcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Dotcopy.sh"
-	alias ebcopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Ebcopy.sh"
-	alias gencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Gencopy.sh"
-	alias natgencopy="bash $HOME/Documentos/GitHub/Scripts/Backups/Bash/Natgencopy.sh"
+	alias copy="cd $HOME/Documentos/GitHub/scripts/Backups/Bash && bash Backups.sh && cd"
+	alias dotcopy="bash $HOME/Documentos/GitHub/scripts/Backups/Bash/Dotcopy.sh"
+	alias ebcopy="bash $HOME/Documentos/GitHub/scripts/Backups/Bash/Ebcopy.sh"
+	alias gencopy="bash $HOME/Documentos/GitHub/scripts/Backups/Bash/Gencopy.sh"
+	alias natgencopy="bash $HOME/Documentos/GitHub/scripts/Backups/Bash/Natgencopy.sh"
 
 	# Miscellaneous.
 	alias sudo="doas"
