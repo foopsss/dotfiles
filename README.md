@@ -8,6 +8,7 @@ The [script](https://github.com/foopsss/Scripts/blob/main/Backups/Bash/Dotcopy.s
 * Bash.
 * GTK3/4.
 * Hyprland.
+* PowerShell.
 * Sway.
 * SwayNC.
 * Waybar.
