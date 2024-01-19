@@ -16,17 +16,6 @@
 	
 # Alias.
 
-	# Programs.
-	alias firefox="firefox-bin"
-	alias thunderbird="thunderbird-bin"
-	alias apostrophe="flatpak run org.gnome.gitlab.somas.Apostrophe"
-	alias flatseal="flatpak run com.github.tchx84.Flatseal"
-	alias steam="flatpak run com.valvesoftware.Steam"
-	
-	# Menu scripts.
-	alias genscript="cd $HOME/Documentos/GitHub/scripts/Automatización/Gentoo/GenScript && bash GenScript.sh && cd"
-	alias adbtool="cd $HOME/Documentos/GitHub/scripts/ADB/Bash/ && bash ADBTool.sh && cd"
-	
 	# Backup scripts.
 	alias copy="cd $HOME/Documentos/GitHub/scripts/Backups/Bash && bash Backups.sh && cd"
 	alias dotcopy="bash $HOME/Documentos/GitHub/scripts/Backups/Bash/Dotcopy.sh"
@@ -34,10 +23,24 @@
 	alias gencopy="bash $HOME/Documentos/GitHub/scripts/Backups/Bash/Gencopy.sh"
 	alias natgencopy="bash $HOME/Documentos/GitHub/scripts/Backups/Bash/Natgencopy.sh"
 
+	# Directories.
+	alias gitdir="cd $HOME/Documentos/GitHub"
+
+	# Menu scripts.
+	alias adbtool="cd $HOME/Documentos/GitHub/scripts/ADB/Bash/ && bash ADBTool.sh && cd"
+	alias genscript="cd $HOME/Documentos/GitHub/scripts/Automatización/Gentoo/GenScript && bash GenScript.sh && cd"
+
 	# Miscellaneous.
-	alias sudo="doas"
-	alias restart="reboot"
 	alias battery="cat /sys/class/power_supply/BAT*/capacity"
 	alias brightness="cat /sys/class/backlight/amdgpu_bl0/actual_brightness"
 	alias maxbrightness="cat /sys/class/backlight/amdgpu_bl0/max_brightness"
 	alias makepdf="convert \*.png my_pdf.pdf"
+	alias restart="reboot"
+	alias sudo="doas"
+
+	# Programs.
+	alias apostrophe="flatpak run org.gnome.gitlab.somas.Apostrophe"
+	alias firefox="firefox-bin"
+	alias flatseal="flatpak run com.github.tchx84.Flatseal"
+	alias steam="flatpak run com.valvesoftware.Steam"
+	alias thunderbird="thunderbird-bin"
